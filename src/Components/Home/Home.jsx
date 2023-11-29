@@ -22,7 +22,16 @@ export default function Home() {
     };
     fetch_data();
   }, []);
-  console.log(Data);
+  useEffect(() => {
+    const fetch_jewels = async () => {
+      const response = await axios.get(
+        `${enivronment.baseUrl}/products/category/jewelery`
+      );
+      const mydata = response;
+      console.log(mydata);
+    };
+    fetch_jewels();
+  }, []);
   return (
     <div className="w-3/5 h-screen overflow-auto flex flex-col items-center">
       {Data.map((product) => (
