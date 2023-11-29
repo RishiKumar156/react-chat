@@ -4,7 +4,7 @@ import Navigation from "./Components/Nav/Navigation";
 export default function App() {
   return (
     <div className="flex items-center">
-      <Home /> <Navigation />
+      <Home className="overflow-auto h-screen" /> <Navigation />
     </div>
   );
 }
