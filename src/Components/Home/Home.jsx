@@ -1,57 +1,49 @@
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import enivronment from "../../Config";
+import Navigation from "../Nav/Navigation";
+
 export default function Home() {
-  const [Data, setData] = useState([]);
+  const [products, setProducts] = useState([]);
+  const allProductsUrl = "products";
+
   useEffect(() => {
-    const fetch_data = async () => {
-      const response = await axios.get(
-        `${enivronment.baseUrl}/products?limit=5`
-      );
-      const items = response.data.map(
-        ({ category, description, id, rating, image, title }) => ({
-          index: id,
-          cat: category,
-          desc: description,
-          img: image,
-          price: rating,
-          prod_name: title,
-        })
-      );
-      setData(items);
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(
+          `${enivronment.baseUrl}/${allProductsUrl}`
+        );
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
-    fetch_data();
+
+    fetchProducts();
   }, []);
-  useEffect(() => {
-    const fetch_jewels = async () => {
-      const response = await axios.get(
-        `${enivronment.baseUrl}/products/category/jewelery`
-      );
-      const mydata = response;
-      console.log(mydata);
-    };
-    fetch_jewels();
-  }, []);
+
   return (
-    <div className="w-3/5 h-screen overflow-auto flex flex-col items-center">
-      {Data.map((product) => (
-        <div
-          key={product.index}
-          className="w-4/5 h-[400px] p-5 m-2 rounded bg-[#efefef] flex items-center"
-        >
-          <div className="flex flex-col w-2/6 p-2">
-            <img src={product.img} alt={product.prod_name} className="w-full" />
-            <h2 className="text-sm">{product.prod_name}</h2>
+    <div className="flex flex-col w-[100vw] h-screen">
+      <Navigation />
+      <h3 className="mt-[15vh]">Products</h3>
+      <div className="flex flex-wrap justify-evenly gap-[1rem]">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="w-[400px] h-[300px] flex p-4 bg-[#FF8C8C] mb-[1rem]"
+          >
+            <img
+              src={product.image}
+              className="w-[150px] h-full object-cover"
+              alt=""
+            />
+            <div className="flex flex-col flex-grow w-[150px] p-5">
+              <h2 className="font-semibold text-white">{product.category}</h2>
+              <p className="text-sm text-white">{product.description}</p>
+            </div>
           </div>
-          <div className="flex flex-col items-start">
-            <p className="text-base font-semibold p-2">{product.cat}</p>
-            <p className="text-xs p-2">{product.desc}</p>
-            <p className="text-xs font-semibold p-2">
-              Price ~ ${product.price.rate} No.of.items :{product.price.count}
-            </p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
