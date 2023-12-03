@@ -5,7 +5,7 @@ import Navigation from "./Components/Nav/Navigation";
 export default function App() {
   return (
     <>
-      <DialogBox />
+      <Home />
     </>
   );
 }

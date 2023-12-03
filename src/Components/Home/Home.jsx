@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import enivronment from "../../Config";
 import Navigation from "../Nav/Navigation";
+import DialogBox from "../DialogBox";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
   const allProductsUrl = "products";
+
+  const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -52,6 +55,20 @@ export default function Home() {
                 {truncateString(product.description, 150)}
               </p>
             </div>
+            <button
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              {" "}
+              view details
+            </button>
+            <DialogBox
+              key={product.id}
+              isOpened={isOpen}
+              onClosed={() => setOpen(false)}
+              data={"hello"}
+            ></DialogBox>
           </div>
         ))}
       </div>
