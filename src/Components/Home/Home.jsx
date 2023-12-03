@@ -37,7 +37,7 @@ export default function Home() {
         {products.map((product) => (
           <div
             key={product.id}
-            className="w-[400px] h-[300px] transition-all duration-300 hover:bg-[#FF8C8C] rounded-sm flex items-center p-4 mb-[1rem]"
+            className="w-[400px] h-[300px] transition-all duration-700 hover:bg-[#FF8C8C] rounded-sm flex items-center p-4 mb-[1rem]"
           >
             <img
               src={product.image}
