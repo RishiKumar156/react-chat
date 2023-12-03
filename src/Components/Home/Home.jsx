@@ -22,24 +22,35 @@ export default function Home() {
     fetchProducts();
   }, []);
 
+  const truncateString = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num) + "...";
+    } else {
+      return str;
+    }
+  };
   return (
-    <div className="flex flex-col w-[100vw] h-screen">
+    <div className="flex flex-col w-[100vw] h-screen overflow-x-hidden">
       <Navigation />
       <h3 className="mt-[15vh]">Products</h3>
       <div className="flex flex-wrap justify-evenly gap-[1rem]">
         {products.map((product) => (
           <div
             key={product.id}
-            className="w-[400px] h-[300px] flex p-4 bg-[#FF8C8C] mb-[1rem]"
+            className="w-[400px] h-[300px] transition-all duration-300 hover:bg-[#FF8C8C] rounded-sm flex items-center p-4 mb-[1rem]"
           >
             <img
               src={product.image}
               className="w-[150px] h-full object-cover"
               alt=""
             />
-            <div className="flex flex-col flex-grow w-[150px] p-5">
-              <h2 className="font-semibold text-white">{product.category}</h2>
-              <p className="text-sm text-white">{product.description}</p>
+            <div className="flex flex-col group flex-grow w-[150px] p-4">
+              <h2 className="font-semibold group-hover:[text-white] ">
+                {product.category}
+              </h2>
+              <p className="text-[0.8rem] group-hover:[text-white]">
+                {truncateString(product.description, 150)}
+              </p>
             </div>
           </div>
         ))}
