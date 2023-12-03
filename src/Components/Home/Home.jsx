@@ -48,11 +48,11 @@ export default function Home() {
               className="w-[150px] h-full object-cover"
               alt=""
             />
-            <div className="flex flex-col group flex-grow w-[150px] p-4">
-              <h2 className="font-semibold group-hover:[text-white]">
+            <div className="flex flex-col items-start justify-center group flex-grow w-[150px] p-4">
+              <h2 className="font-semibold group-hover:[text-white] pb-2">
                 {product.category}
               </h2>
-              <p className="text-[0.8rem] group-hover:[text-white]">
+              <p className="text-[0.8rem] group-hover:[text-white] p-2">
                 {truncateString(product.description, 150)}
               </p>
               <button
@@ -60,6 +60,7 @@ export default function Home() {
                   setSelectedProduct(product);
                   setOpen(true);
                 }}
+                className=" py-2 px-4 mt-2"
               >
                 View Details
               </button>

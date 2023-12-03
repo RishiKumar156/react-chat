@@ -11,7 +11,7 @@ export default function DialogBox({ isOpen, onClose, data }) {
       <div className="flex flex-col w-[80%] h-[70%] bg-white rounded-sm p-4">
         <div className="flex w-full h-full items-center justify-between">
           <div className="flex w-[30%] flex-col">
-            <img src={data?.image} className="object-cover" alt="" />
+            <img src={data?.image} className="object-cover p-4" alt="" />
           </div>
           <div className="flex w-full h-full flex-col justify-center ml-[4rem]">
             <h2 className="font-bold py-2 text-xl capitalize">
