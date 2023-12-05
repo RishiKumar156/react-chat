@@ -45,7 +45,7 @@ export default function Home() {
           >
             <img
               src={product.image}
-              className="w-[150px] h-full object-cover"
+              className="w-[150px] h-full object-cover p-4"
               alt=""
             />
             <div className="flex flex-col items-start justify-center group flex-grow w-[150px] p-4">
