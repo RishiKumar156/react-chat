@@ -1,5 +1,5 @@
 import React from "react";
-
+import { X } from "lucide-react";
 export default function DialogBox({ isOpen, onClose, data }) {
   if (!isOpen) return null;
 
@@ -8,38 +8,48 @@ export default function DialogBox({ isOpen, onClose, data }) {
       style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
       className="w-full h-screen fixed top-0 left-0 flex flex-col items-center justify-center"
     >
-      <div className="flex flex-col w-[80%] h-[70%] bg-white rounded-sm p-4">
+      <div className="flex flex-col relative w-[80%] h-[70%] justify-center bg-white rounded-sm p-4">
         <div className="flex w-full h-full items-center justify-between">
-          <div className="flex w-[30%] flex-col">
+          <div className="flex w-[50%] md:w-[30%] flex-col">
             <img src={data?.image} className="object-cover p-4" alt="" />
           </div>
-          <div className="flex w-full h-full flex-col justify-center ml-[4rem]">
+          <div className="flex w-full h-full flex-col  ml-[1rem] md:ml-[4rem]">
             <h2 className="font-bold py-2 text-xl capitalize">
               {data?.category}
             </h2>
-            <h3 className="font-semibold text-xl"> {data?.title} </h3>
-            <p className="text-sm py-2"> {data?.description} </p>
-            <div className="flex items-center">
-              <span className="p-1"> Price : {data?.price}, </span>
-              <span className="p-1">Available: {data?.rating.count},</span>
-              <span className="p-1"> Rating ~ {data?.rating.rate}. </span>
+            <h3 className="font-semibold text-[1rem] md:text-xl">
+              {data?.title}
+            </h3>
+            <p className="text-xs py-4 md:text-sm md:py-2">
+              {data?.description}
+            </p>
+            <div className="flex items-evenly">
+              <span className="flex items-center text-xs md:text-sm p-1">
+                <span className="font-semibold">Price : </span> {data?.price},
+              </span>
+              <span className="flex items-center text-xs md:text-sm p-1">
+                <span className="font-semibold">Available: </span>
+                {data?.rating.count},
+              </span>
+              <span className="flex items-center text-xs md:text-sm p-1">
+                <span className="font-semibold">Rating ~ </span>
+                {data?.rating.rate}.
+              </span>
             </div>
-            <div className="flex items-center justify-between w-[30%] mt-4">
-              <button className="bg-[#FF8C8C] text-white px-6 py-2 rounded-sm ">
+            <div className="flex items-center justify-between w-full md:w-[30%] mt-4">
+              <button className="bg-[#FF8C8C] text-white px-4 md:px-6 md:py-2  py-1 rounded-sm ">
                 Buy Now
               </button>
-              <button className="bg-[#FF8C8C] text-white px-6 py-2 rounded-sm ">
+              <button className="bg-[#FF8C8C] text-white px-4 md:px-6 md:py-2 py-1 rounded-sm ">
                 Add to Cart
               </button>
             </div>
           </div>
         </div>
-        <button
-          className="absolute top-[33rem] right-[13rem] px-[2rem] py-[0.5rem] rounded-sm text-white bg-[#FF8C8C]"
+        <X
           onClick={onClose}
-        >
-          Close
-        </button>
+          className="absolute top-0 right-0 m-[1rem] text-black cursor-pointer"
+        />
       </div>
     </div>
   );

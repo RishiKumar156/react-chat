@@ -14,7 +14,7 @@ export default function Navigation() {
       {isOpen ? (
         <Profile />
       ) : (
-        <div className="mr-[4rem]">
+        <div className="mr-[0.3rem] md:mr-[2rem]">
           <button
             onClick={() => setLoginModalOpen(true)}
             className="text-[#FF8C8C] transition duration-300 hover:bg-[#FF8C8C]
