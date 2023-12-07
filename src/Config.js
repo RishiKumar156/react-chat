@@ -1,6 +1,6 @@
-const enivronment = {
+const environment = {
   baseUrl: "https://fakestoreapi.com",
-  api: "",
+  api: "http://127.0.0.1:8000",
 };
 
-export default enivronment;
+export default environment;

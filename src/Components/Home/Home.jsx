@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import enivronment from "../../Config";
 import Navigation from "../Nav/Navigation";
 import DialogBox from "../DialogBox";
+import environment from "../../Config";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -14,7 +14,7 @@ export default function Home() {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `${enivronment.baseUrl}/${allProductsUrl}`
+          `${environment.baseUrl}/${allProductsUrl}`
         );
         setProducts(response.data);
       } catch (error) {

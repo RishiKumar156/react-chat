@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
 import axios from "axios";
-import enivronment from "../../Config";
+import environment from "../../Config";
 
 export default function Login({ isOpen, onClose }) {
   const [userName, setuserName] = useState(null);
@@ -11,15 +11,27 @@ export default function Login({ isOpen, onClose }) {
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      console.log(userName);
-      console.log(email);
-      console.log(password);
-      // const response = await axios.get(`${enivronment.api}`);
-      // console.log(response);
+      const response = await axios.post(
+        `${environment.api}/Login`,
+        {
+          username: userName,
+          password: password,
+          email: email,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response);
+      // Handle the response data as needed, e.g., save the token or user data
     } catch (error) {
-      console.log("Error occured in ", error);
+      console.log("Error occurred:", error);
+      // Handle the error, e.g., display an error message to the user
     }
   };
+
   return (
     <div
       style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
