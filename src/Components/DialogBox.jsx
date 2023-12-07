@@ -13,7 +13,7 @@ export default function DialogBox({ isOpen, onClose, data }) {
           <div className="flex w-[50%] md:w-[30%] flex-col">
             <img src={data?.image} className="object-cover p-4" alt="" />
           </div>
-          <div className="flex w-full h-full flex-col  ml-[1rem] md:ml-[4rem]">
+          <div className="flex justify-center w-full h-full flex-col  ml-[1rem] md:ml-[4rem]">
             <h2 className="font-bold py-2 text-xl capitalize">
               {data?.category}
             </h2>

@@ -36,23 +36,23 @@ export default function Home() {
   return (
     <div className="flex flex-col w-[100vw] h-screen overflow-x-hidden">
       <Navigation />
-      <h3 className="mt-[15vh]">Products</h3>
+      <h3 className="mt-[15vh] text-center text-[2rem] py-[1rem]">Products</h3>
       <div className="flex flex-wrap justify-evenly gap-[1rem]">
         {products.map((product) => (
           <div
             key={product.id}
-            className="w-[400px] h-[300px] transition-all duration-700 hover:bg-[#FF8C8C] rounded-sm flex items-center p-4 mb-[1rem]"
+            className="w-[400px] h-[300px] transition-all duration-700 hover:bg-[#FF8C8C] group rounded-sm flex items-center p-4 mb-[1rem]"
           >
             <img
               src={product.image}
               className="w-[150px] h-full object-cover p-4"
               alt=""
             />
-            <div className="flex flex-col items-start justify-center group flex-grow w-[150px] p-4">
+            <div className="flex flex-col group-hover:text-white items-start justify-center group flex-grow w-[150px] p-4">
               <h2 className="font-semibold group-hover:[text-white] pb-2">
                 {product.category}
               </h2>
-              <p className="text-[0.8rem] group-hover:[text-white] p-2">
+              <p className="text-[0.8rem] mb-[0.5rem] group-hover:[text-white]">
                 {truncateString(product.description, 150)}
               </p>
               <button
@@ -60,7 +60,7 @@ export default function Home() {
                   setSelectedProduct(product);
                   setOpen(true);
                 }}
-                className=" py-2 px-4 mt-2"
+                className="bg-[#FF8c8c] group-hover:bg-white group-hover:text-[#ff8c8c] rounded-sm text-white py-2 px-4 mt-2"
               >
                 View Details
               </button>
