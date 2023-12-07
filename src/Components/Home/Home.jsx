@@ -49,7 +49,7 @@ export default function Home() {
               alt=""
             />
             <div className="flex flex-col group-hover:text-white items-start justify-center group flex-grow w-[150px] p-4">
-              <h2 className="font-semibold group-hover:[text-white] pb-2">
+              <h2 className="font-semibold group-hover:[text-white] pb-2 capitalize">
                 {product.category}
               </h2>
               <p className="text-[0.8rem] mb-[0.5rem] group-hover:[text-white]">

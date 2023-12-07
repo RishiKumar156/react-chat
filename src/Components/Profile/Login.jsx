@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { X } from "lucide-react";
 import axios from "axios";
 import environment from "../../Config";
-
+import Cookies from "js-cookie";
 export default function Login({ isOpen, onClose }) {
   const [userName, setuserName] = useState(null);
   const [password, setPassword] = useState(null);
   const [email, setEmail] = useState(null);
+  const [tokenObject, setTokenObject] = useState(null);
   if (!isOpen) return null;
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -24,11 +25,27 @@ export default function Login({ isOpen, onClose }) {
           },
         }
       );
-      console.log(response);
-      // Handle the response data as needed, e.g., save the token or user data
+      const { token, user } = response.data;
+      const userObject = {
+        token: token,
+        username: user.username,
+        email: user.email,
+      };
+      Cookies.set("tokenUserObject", JSON.stringify(userObject));
+      // To retrieve the object from the cookie
+
+      const storedUserObjectString = Cookies.get("userObject");
+
+      if (storedUserObjectString) {
+        // Deserialize the JSON string to get the original object
+        const storedUserObject = JSON.parse(storedUserObjectString);
+        // Now you can use the storedUserObject as an object in your application
+        console.log(storedUserObject.token);
+        console.log(storedUserObject.username);
+        console.log(storedUserObject.email);
+      }
     } catch (error) {
       console.log("Error occurred:", error);
-      // Handle the error, e.g., display an error message to the user
     }
   };
 
@@ -37,7 +54,7 @@ export default function Login({ isOpen, onClose }) {
       style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
       className="w-full h-full fixed top-0 left-0 flex items-center justify-center"
     >
-      <div className="w-[80%] md:w-[35%] h-[60%] relative bg-white rounded">
+      <div className="w-[80%] md:w-[30%] h-[60%] relative bg-white rounded">
         <X
           onClick={onClose}
           className="absolute top-0 right-0 m-[1rem] text-black cursor-pointer"
@@ -81,10 +98,10 @@ export default function Login({ isOpen, onClose }) {
             </button>
           </div>
           <p className="text-gray-600 text-xs">
-            New to Ecommerce{" "}
+            New to Ecommerce
             <a href="" className="text-sm text-[#FF8C8C] px-1">
               Sing Up
-            </a>{" "}
+            </a>
             first.
           </p>
         </form>
