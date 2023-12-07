@@ -7,7 +7,6 @@ export default function Login({ isOpen, onClose }) {
   const [userName, setuserName] = useState(null);
   const [password, setPassword] = useState(null);
   const [email, setEmail] = useState(null);
-  const [tokenObject, setTokenObject] = useState(null);
   if (!isOpen) return null;
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -32,10 +31,9 @@ export default function Login({ isOpen, onClose }) {
         email: user.email,
       };
       Cookies.set("tokenUserObject", JSON.stringify(userObject));
+      onClose(); //it will close the dialog box buy it self oncce the success full login has done
       // To retrieve the object from the cookie
-
       const storedUserObjectString = Cookies.get("userObject");
-
       if (storedUserObjectString) {
         // Deserialize the JSON string to get the original object
         const storedUserObject = JSON.parse(storedUserObjectString);
