@@ -4,7 +4,7 @@ import axios from "axios";
 import environment from "../../Config";
 import Cookies from "js-cookie";
 import Navigation from "./../Nav/Navigation";
-export default function Login({ isOpen, onClose }) {
+export default function Login({ isOpen, onClose, onSuccess }) {
   const [userName, setuserName] = useState(null);
   const [password, setPassword] = useState(null);
   const [email, setEmail] = useState(null);
@@ -31,6 +31,7 @@ export default function Login({ isOpen, onClose }) {
         username: user.username,
         email: user.email,
       };
+      onSuccess(token);
       Cookies.set("tokenUserObject", JSON.stringify(userObject));
       onClose(); //it will close the dialog box buy it self oncce the success full login has done
       // To retrieve the object from the cookie

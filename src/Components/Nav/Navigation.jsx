@@ -3,16 +3,27 @@ import Profile from "../Profile/Profile";
 import Login from "../Profile/Login";
 import SignUp from "../Profile/SignUp";
 
-export default function Navigation({ loggedIn }) {
+export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false); //just for reference not the entier logic
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
-  console.log(loggedIn);
+  const [token, setToken] = useState(null);
+
+  const handleLoginSuccess = (newToken) => {
+    // Update the token in the state when login is successful
+    setToken(newToken);
+  };
+
   return (
     <div className="fixed flex items-center justify-between top-0 left-0 w-full h-[13vh] p-5 bg-[#FF8C8C]">
       <h1>Navigation</h1>
-      {loggedIn ? (
-        <Profile />
+      {token ? (
+        <button
+          className="text-[#FF8C8C] transition duration-300 hover:bg-[#FF8C8C]
+            hover:text-white font-semibold text-sm py-2 px-6 bg-[white] mx-[0.5rem] rounded-sm"
+        >
+          Profile
+        </button>
       ) : (
         <div className="mr-[0.3rem] md:mr-[2rem]">
           <button
@@ -25,6 +36,7 @@ export default function Navigation({ loggedIn }) {
           <Login
             isOpen={isLoginModalOpen}
             onClose={() => setLoginModalOpen(false)}
+            onSuccess={handleLoginSuccess}
           />
           <button
             onClick={() => setSignUpModalOpen(true)}
