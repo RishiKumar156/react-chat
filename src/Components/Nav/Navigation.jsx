@@ -3,15 +3,15 @@ import Profile from "../Profile/Profile";
 import Login from "../Profile/Login";
 import SignUp from "../Profile/SignUp";
 
-export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Navigation({ loggedIn }) {
+  const [isOpen, setIsOpen] = useState(false); //just for reference not the entier logic
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
-
+  console.log(loggedIn);
   return (
     <div className="fixed flex items-center justify-between top-0 left-0 w-full h-[13vh] p-5 bg-[#FF8C8C]">
       <h1>Navigation</h1>
-      {isOpen ? (
+      {loggedIn ? (
         <Profile />
       ) : (
         <div className="mr-[0.3rem] md:mr-[2rem]">

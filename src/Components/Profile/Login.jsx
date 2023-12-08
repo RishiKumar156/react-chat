@@ -3,6 +3,7 @@ import { X } from "lucide-react";
 import axios from "axios";
 import environment from "../../Config";
 import Cookies from "js-cookie";
+import Navigation from "./../Nav/Navigation";
 export default function Login({ isOpen, onClose }) {
   const [userName, setuserName] = useState(null);
   const [password, setPassword] = useState(null);
@@ -34,6 +35,7 @@ export default function Login({ isOpen, onClose }) {
       onClose(); //it will close the dialog box buy it self oncce the success full login has done
       // To retrieve the object from the cookie
       const storedUserObjectString = Cookies.get("userObject");
+      <Navigation isloggedIn={"Hello"} />;
       if (storedUserObjectString) {
         // Deserialize the JSON string to get the original object
         const storedUserObject = JSON.parse(storedUserObjectString);
