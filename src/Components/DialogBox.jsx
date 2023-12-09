@@ -1,8 +1,12 @@
 import React from "react";
 import { X } from "lucide-react";
+import { Cart } from "./Cart/Cart";
 export default function DialogBox({ isOpen, onClose, data }) {
   if (!isOpen) return null;
-
+  const handleCart = () => {
+    <Cart itemDetail={data} />;
+    console.log("Adding item to cart:", data);
+  };
   return (
     <div
       style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
@@ -40,7 +44,10 @@ export default function DialogBox({ isOpen, onClose, data }) {
               <button className="bg-[#FF8C8C] text-white px-4 md:px-6 md:py-2  py-1 rounded-sm ">
                 Buy Now
               </button>
-              <button className="bg-[#FF8C8C] text-white px-4 md:px-6 md:py-2 py-1 rounded-sm ">
+              <button
+                onClick={handleCart}
+                className="bg-[#FF8C8C] text-white px-4 md:px-6 md:py-2 py-1 rounded-sm "
+              >
                 Add to Cart
               </button>
             </div>
