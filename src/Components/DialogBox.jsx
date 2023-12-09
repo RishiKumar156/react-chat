@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { X } from "lucide-react";
 import { Cart } from "./Cart/Cart";
+import axios from "axios";
+import environment from "./../Config";
 export default function DialogBox({ isOpen, onClose, data }) {
   if (!isOpen) return null;
-  const handleCart = () => {
-    <Cart itemDetail={data} />;
-    console.log("Adding item to cart:", data);
-  };
   const truncateString = (str, num) => {
     if (str?.length > num) {
       return str.slice(0, num) + "...";
@@ -14,6 +12,13 @@ export default function DialogBox({ isOpen, onClose, data }) {
       return str;
     }
   };
+
+  useEffect(() => {
+    const postSelectedCartItem = async () => {
+      const response = await axios.post(`${environment.api}`);
+    };
+  });
+
   return (
     <div
       style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
@@ -52,7 +57,7 @@ export default function DialogBox({ isOpen, onClose, data }) {
                 Buy Now
               </button>
               <button
-                onClick={handleCart}
+                onClick={post}
                 className="bg-[#FF8C8C] text-white px-4 md:px-6 md:py-2 py-1 rounded-sm "
               >
                 Add to Cart

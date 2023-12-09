@@ -10,8 +10,9 @@ from backend.views import test_token
 @api_view(['POST'])
 def CreateCart(request):
     serializer = CartSerializer(request.data)
-    isAuthenticated = test_token()
+    isAuthenticated = test_token(request.data.token)
     if serializer.is_valid():
-        serializer.save()
-        return Response({'success': 'CartCreated'}, status=status.HTTP_201_CREATED)
+        if isAuthenticated:
+            serializer.save()
+            return Response({'success': 'CartCreated'}, status=status.HTTP_201_CREATED)
     return Response({'message' : 'Cart Has Not been Created'}, status=status.HTTP_400_BAD_REQUEST)
