@@ -7,6 +7,13 @@ export default function DialogBox({ isOpen, onClose, data }) {
     <Cart itemDetail={data} />;
     console.log("Adding item to cart:", data);
   };
+  const truncateString = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num) + "...";
+    } else {
+      return str;
+    }
+  };
   return (
     <div
       style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
@@ -25,7 +32,7 @@ export default function DialogBox({ isOpen, onClose, data }) {
               {data?.title}
             </h3>
             <p className="text-xs p-[1rem] pl-[0] md:text-sm md:py-2">
-              {data?.description}
+              {truncateString(data?.description, 350)}
             </p>
             <div className="flex items-evenly">
               <span className="flex items-center text-xs md:text-sm p-1">
