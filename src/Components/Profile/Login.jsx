@@ -32,18 +32,9 @@ export default function Login({ isOpen, onClose, onSuccess }) {
         email: user.email,
       };
       onSuccess(userObject);
+      sessionStorage.setItem("tokenUserObject", userObject);
       onClose(); //it will close the dialog box buy it self oncce the success full login has done
       // To retrieve the object from the cookie
-      const storedUserObjectString = Cookies.get("userObject");
-      <Navigation isloggedIn={"Hello"} />;
-      if (storedUserObjectString) {
-        // Deserialize the JSON string to get the original object
-        const storedUserObject = JSON.parse(storedUserObjectString);
-        // Now you can use the storedUserObject as an object in your application
-        console.log(storedUserObject.token);
-        console.log(storedUserObject.username);
-        console.log(storedUserObject.email);
-      }
     } catch (error) {
       console.log("Error occurred:", error);
     }

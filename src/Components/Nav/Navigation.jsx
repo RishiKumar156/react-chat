@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Profile from "../Profile/Profile";
 import Login from "../Profile/Login";
 import SignUp from "../Profile/SignUp";
@@ -12,13 +12,16 @@ export default function Navigation() {
   const handleAuthSuccess = (newToken) => {
     // Update the token in the state when login is successful
     if (newToken) {
-      const userToken = sessionStorage.setItem(
-        "tokenUserObject",
-        JSON.stringify(newToken)
-      );
-      setToken(userToken);
+      setToken(newToken);
     }
   };
+
+  useEffect(() => {
+    const storedToken = sessionStorage.getItem("tokenUserObject");
+    if (storedToken) {
+      setToken(JSON.stringify(storedToken));
+    }
+  });
 
   return (
     <div className="fixed flex items-center justify-between top-0 left-0 w-full h-[13vh] p-5 bg-[#FF8C8C]">
