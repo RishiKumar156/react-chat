@@ -31,8 +31,7 @@ export default function Login({ isOpen, onClose, onSuccess }) {
         username: user.username,
         email: user.email,
       };
-      onSuccess(token);
-      Cookies.set("tokenUserObject", JSON.stringify(userObject));
+      onSuccess(userObject);
       onClose(); //it will close the dialog box buy it self oncce the success full login has done
       // To retrieve the object from the cookie
       const storedUserObjectString = Cookies.get("userObject");

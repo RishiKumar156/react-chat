@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { X } from "lucide-react";
 import axios from "axios";
 import environment from "../../Config";
-export default function SignUp({ isOpen, onClose }) {
+import Cookies from "js-cookie";
+export default function SignUp({ isOpen, onClose, onSuccess }) {
   const [username, setuserName] = useState(null);
   const [password, setPassword] = useState(null);
   const [email, setEmail] = useState(null);
@@ -22,7 +23,14 @@ export default function SignUp({ isOpen, onClose }) {
           },
         }
       );
-      console.log(response);
+      const { token, user } = response.data;
+      const userTokenObject = {
+        token: token,
+        username: user.username,
+        email: user.email,
+      };
+      Cookies.set("tokenUserObject", JSON.stringify(userTokenObject));
+      onSuccess(token);
     } catch (error) {
       console.log("Error occured: " + error);
     }
