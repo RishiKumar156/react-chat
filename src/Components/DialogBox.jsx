@@ -20,7 +20,7 @@ export default function DialogBox({ isOpen, onClose, data }) {
             <h3 className="font-semibold text-[1rem] md:text-xl">
               {data?.title}
             </h3>
-            <p className="text-xs py-4 md:text-sm md:py-2">
+            <p className="text-xs p-[1rem] pl-[0] md:text-sm md:py-2">
               {data?.description}
             </p>
             <div className="flex items-evenly">
