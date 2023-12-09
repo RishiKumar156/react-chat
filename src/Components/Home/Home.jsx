@@ -60,7 +60,8 @@ export default function Home() {
                   setSelectedProduct(product);
                   setOpen(true);
                 }}
-                className="bg-[#FF8c8c] group-hover:bg-white group-hover:text-[#ff8c8c] rounded-sm text-white py-2 px-4 mt-2"
+                className="bg-[#FF8c8c] group-hover:bg-white group-hover:text-[#ff8c8c] 
+                rounded-sm text-white py-2 px-4 mt-2"
               >
                 View Details
               </button>
