@@ -14,9 +14,17 @@ export default function DialogBox({ isOpen, onClose, data }) {
   };
 
   const postSelectedCartItem = async () => {
+    const bk_obj = {
+      userId: 56,
+      img: data?.image,
+      description: data?.description,
+      price: data?.price,
+      qty: 500,
+    };
+    console.log(bk_obj);
     const response = await axios.post(
       `${environment.api}/cart/createCart`,
-      data
+      bk_obj
     );
     console.log(response);
   };

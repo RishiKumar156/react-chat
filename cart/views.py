@@ -8,9 +8,9 @@ from .serializer import CartSerializer
 
 @api_view(['POST'])
 def CreateCart(request):
-    token = request.headers.get('Authorization')
-    isVerified =  test_token(request)
-    print(isVerified)
+    # token = request.headers.get('Authorization')
+    # isVerified =  test_token(request)
+    # print(isVerified)
     serializer = CartSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()

@@ -2,7 +2,7 @@ from django.db import models
 
 class CartItem(models.Model):
     img = models.TextField()
-    price = models.PositiveIntegerField()
+    price = models.TextField()
     description = models.TextField()
     qty = models.PositiveIntegerField()
     userId = models.TextField()
