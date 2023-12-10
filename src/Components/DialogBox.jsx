@@ -13,11 +13,11 @@ export default function DialogBox({ isOpen, onClose, data }) {
     }
   };
 
-  useEffect(() => {
-    const postSelectedCartItem = async () => {
-      const response = await axios.post(`${environment.api}`);
-    };
-  });
+  // useEffect(() => {
+  //   const postSelectedCartItem = async () => {
+  //     const response = await axios.post(`${environment.api}`);
+  //   };
+  // });
 
   return (
     <div
@@ -57,7 +57,7 @@ export default function DialogBox({ isOpen, onClose, data }) {
                 Buy Now
               </button>
               <button
-                onClick={post}
+                // onClick={post}
                 className="bg-[#FF8C8C] text-white px-4 md:px-6 md:py-2 py-1 rounded-sm "
               >
                 Add to Cart
