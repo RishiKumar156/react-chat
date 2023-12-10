@@ -8,8 +8,20 @@ from .serializer import CartSerializer
 
 @api_view(['POST'])
 def CreateCart(request):
-    serializer = CartSerializer(request.data)
+    token = request.headers.get('Authorization')
+    isVerified =  test_token(token)
+    print(isVerified)
+    serializer = CartSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response({'success': 'CartCreated'}, status=status.HTTP_201_CREATED)
     return Response({'message' : 'Cart Has Not been Created'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+# views.py
+from backend.decorators import authenticate_and_authorize
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+@authenticate_and_authorize
+def test_token(request):
+    return Response("Passed for {}".format(request.user.email))
